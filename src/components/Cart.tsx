@@ -1,6 +1,14 @@
 import React from 'react';
 import { X, Plus, Minus, Trash2, ShoppingBag } from 'lucide-react';
 
+interface UserData {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+}
+
 interface CartItem {
   id: number;
   name: string;
@@ -18,6 +26,7 @@ interface CartProps {
   onRemoveItem: (id: number) => void;
   onClearCart: () => void;
   onProceedToCheckout: () => void;
+  user?: UserData | null;
 }
 
 const Cart: React.FC<CartProps> = ({ 
@@ -27,7 +36,8 @@ const Cart: React.FC<CartProps> = ({
   onUpdateQuantity, 
   onRemoveItem, 
   onClearCart,
-  onProceedToCheckout
+  onProceedToCheckout,
+  user
 }) => {
   const getTotalPrice = () => {
     return items.reduce((total, item) => {
@@ -134,7 +144,7 @@ const Cart: React.FC<CartProps> = ({
                   onClick={onProceedToCheckout}
                   className="w-full bg-green-700 hover:bg-green-800 text-white py-3 rounded-lg font-semibold transition-colors"
                 >
-                  Proceder al Pago
+                  {user ? 'Proceder al Pago' : 'Iniciar Sesión para Comprar'}
                 </button>
                 <button 
                   onClick={onClearCart}

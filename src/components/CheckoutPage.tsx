@@ -1,6 +1,18 @@
 import React, { useState } from 'react';
 import { ArrowLeft, User, MapPin, Phone, Mail, CreditCard, Package, CheckCircle } from 'lucide-react';
 
+interface UserData {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  zipCode?: string;
+}
+
 interface CartItem {
   id: number;
   name: string;
@@ -14,6 +26,7 @@ interface CheckoutPageProps {
   cartItems: CartItem[];
   onBack: () => void;
   onOrderComplete: () => void;
+  user?: UserData | null;
 }
 
 interface CustomerData {
@@ -29,13 +42,13 @@ interface CustomerData {
   notes: string;
 }
 
-const CheckoutPage: React.FC<CheckoutPageProps> = ({ cartItems, onBack, onOrderComplete }) => {
+const CheckoutPage: React.FC<CheckoutPageProps> = ({ cartItems, onBack, onOrderComplete, user }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [customerData, setCustomerData] = useState<CustomerData>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
+    firstName: user?.firstName || '',
+    lastName: user?.lastName || '',
+    email: user?.email || '',
+    phone: user?.phone || '',
     address: '',
     city: '',
     state: '',
@@ -43,6 +56,23 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ cartItems, onBack, onOrderC
     paymentMethod: 'transfer',
     notes: ''
   });
+
+  // Pre-fill form with user data if available
+  React.useEffect(() => {
+    if (user) {
+      setCustomerData(prev => ({
+        ...prev,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phone: user.phone,
+        address: user.address || '',
+        city: user.city || '',
+        state: user.state || '',
+        zipCode: user.zipCode || ''
+      }));
+    }
+  }, [user]);
 
   const getTotalPrice = () => {
     return cartItems.reduce((total, item) => {
@@ -69,7 +99,21 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ cartItems, onBack, onOrderC
 
   const handleSubmitOrder = () => {
     // Aquí podrías integrar con una API de pagos o enviar por WhatsApp/Email
-    console.log('Orden enviada:', { customerData, cartItems, total: getTotalPrice() });
+    const order = {
+      id: Date.now().toString(),
+      date: new Date().toISOString(),
+      total: getTotalPrice(),
+      status: 'pending' as const,
+      items: cartItems,
+      customerData
+    };
+    
+    // Save order to localStorage
+    const existingOrders = JSON.parse(localStorage.getItem('inversionesPoloOrders') || '[]');
+    existingOrders.push(order);
+    localStorage.setItem('inversionesPoloOrders', JSON.stringify(existingOrders));
+    
+    console.log('Orden enviada:', order);
     setCurrentStep(4);
     
     // Simular procesamiento

@@ -4,6 +4,8 @@ import ProductCard from './components/ProductCard';
 import ProductsPage from './components/ProductsPage';
 import Cart from './components/Cart';
 import CheckoutPage from './components/CheckoutPage';
+import AuthPage from './components/AuthPage';
+import UserProfile from './components/UserProfile';
 import SearchFilter from './components/SearchFilter';
 import { Package, Phone, MapPin, Mail, Star, Heart } from 'lucide-react';
 
@@ -21,13 +23,26 @@ interface CartItem extends Product {
   quantity: number;
 }
 
+interface UserData {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  zipCode?: string;
+}
+
 function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'products' | 'checkout'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'products' | 'checkout' | 'auth' | 'profile'>('home');
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [favorites, setFavorites] = useState<number[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [user, setUser] = useState<UserData | null>(null);
 
   const allProducts: Product[] = [
     { 
@@ -117,6 +132,7 @@ function App() {
   useEffect(() => {
     const savedCart = localStorage.getItem('inversionesPoloCart');
     const savedFavorites = localStorage.getItem('inversionesPoloFavorites');
+    const savedUser = localStorage.getItem('inversionesPoloCurrentUser');
     
     if (savedCart) {
       setCartItems(JSON.parse(savedCart));
@@ -124,6 +140,10 @@ function App() {
     
     if (savedFavorites) {
       setFavorites(JSON.parse(savedFavorites));
+    }
+    
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
     }
   }, []);
 
@@ -170,13 +190,35 @@ function App() {
   };
 
   const handleProceedToCheckout = () => {
-    setCurrentPage('checkout');
-    setIsCartOpen(false);
+    if (user) {
+      setCurrentPage('checkout');
+      setIsCartOpen(false);
+    } else {
+      setCurrentPage('auth');
+      setIsCartOpen(false);
+    }
   };
 
   const handleOrderComplete = () => {
     clearCart();
     setCurrentPage('home');
+  };
+
+  const handleLogin = (userData: UserData) => {
+    setUser(userData);
+    localStorage.setItem('inversionesPoloCurrentUser', JSON.stringify(userData));
+    setCurrentPage('checkout');
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    localStorage.removeItem('inversionesPoloCurrentUser');
+    setCurrentPage('home');
+  };
+
+  const handleUpdateUser = (userData: UserData) => {
+    setUser(userData);
+    localStorage.setItem('inversionesPoloCurrentUser', JSON.stringify(userData));
   };
 
   const toggleFavorite = (productId: number) => {
@@ -205,8 +247,8 @@ function App() {
     }
   };
 
-  // If we're on the checkout page, render the CheckoutPage component
-  if (currentPage === 'checkout') {
+  // If we're on the auth page, render the AuthPage component
+  if (currentPage === 'auth') {
     return (
       <div className="min-h-screen bg-gray-50">
         <Header 
@@ -214,6 +256,8 @@ function App() {
           onCartClick={() => setIsCartOpen(true)} 
           currentPage={currentPage}
           onNavigate={setCurrentPage}
+          user={user}
+          onProfileClick={() => setCurrentPage('profile')}
         />
 
         <Cart
@@ -224,12 +268,82 @@ function App() {
           onRemoveItem={removeFromCart}
           onClearCart={clearCart}
           onProceedToCheckout={handleProceedToCheckout}
+          user={user}
+        />
+
+        <AuthPage
+          onBack={() => setCurrentPage('home')}
+          onLogin={handleLogin}
+        />
+      </div>
+    );
+  }
+
+  // If we're on the profile page, render the UserProfile component
+  if (currentPage === 'profile') {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Header 
+          cartItems={getTotalCartItems()} 
+          onCartClick={() => setIsCartOpen(true)} 
+          currentPage={currentPage}
+          onNavigate={setCurrentPage}
+          user={user}
+          onProfileClick={() => setCurrentPage('profile')}
+        />
+
+        <Cart
+          isOpen={isCartOpen}
+          onClose={() => setIsCartOpen(false)}
+          items={cartItems}
+          onUpdateQuantity={updateCartQuantity}
+          onRemoveItem={removeFromCart}
+          onClearCart={clearCart}
+          onProceedToCheckout={handleProceedToCheckout}
+          user={user}
+        />
+
+        {user && (
+          <UserProfile
+            user={user}
+            onUpdateUser={handleUpdateUser}
+            onLogout={handleLogout}
+            onBack={() => setCurrentPage('home')}
+          />
+        )}
+      </div>
+    );
+  }
+
+  // If we're on the checkout page, render the CheckoutPage component
+  if (currentPage === 'checkout') {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Header 
+          cartItems={getTotalCartItems()} 
+          onCartClick={() => setIsCartOpen(true)} 
+          currentPage={currentPage}
+          onNavigate={setCurrentPage}
+          user={user}
+          onProfileClick={() => setCurrentPage('profile')}
+        />
+
+        <Cart
+          isOpen={isCartOpen}
+          onClose={() => setIsCartOpen(false)}
+          items={cartItems}
+          onUpdateQuantity={updateCartQuantity}
+          onRemoveItem={removeFromCart}
+          onClearCart={clearCart}
+          onProceedToCheckout={handleProceedToCheckout}
+          user={user}
         />
 
         <CheckoutPage
           cartItems={cartItems}
           onBack={() => setCurrentPage('home')}
           onOrderComplete={handleOrderComplete}
+          user={user}
         />
       </div>
     );
@@ -244,6 +358,8 @@ function App() {
           onCartClick={() => setIsCartOpen(true)} 
           currentPage={currentPage}
           onNavigate={setCurrentPage}
+          user={user}
+          onProfileClick={() => setCurrentPage('profile')}
         />
 
         <Cart
@@ -254,6 +370,7 @@ function App() {
           onRemoveItem={removeFromCart}
           onClearCart={clearCart}
           onProceedToCheckout={handleProceedToCheckout}
+          user={user}
         />
 
         <ProductsPage
@@ -275,6 +392,8 @@ function App() {
         onCartClick={() => setIsCartOpen(true)} 
         currentPage={currentPage}
         onNavigate={setCurrentPage}
+        user={user}
+        onProfileClick={() => setCurrentPage('profile')}
       />
 
       <Cart
@@ -285,6 +404,7 @@ function App() {
         onRemoveItem={removeFromCart}
         onClearCart={clearCart}
         onProceedToCheckout={handleProceedToCheckout}
+        user={user}
       />
 
       {/* Hero Section */}
@@ -292,7 +412,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
             <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-              Bienvenidos a Inversiones Polo
+              {user ? `¡Bienvenido ${user.firstName}!` : 'Bienvenidos a Inversiones Polo'}
             </h1>
             <p className="text-xl sm:text-2xl mb-8 text-green-100">
               Tu tienda de confianza para electrodomésticos y tecnología
