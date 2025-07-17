@@ -551,7 +551,7 @@ function App() {
               <div className="space-y-4">
                 <div className="flex items-center">
                   <Phone className="w-5 h-5 text-green-400 mr-3" />
-                  <span>+58 424-123-4567</span>
+                  <span>+51 987-654-321</span>
                 </div>
                 <div className="flex items-center">
                   <Mail className="w-5 h-5 text-green-400 mr-3" />

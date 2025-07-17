@@ -162,7 +162,7 @@ ${itemsList}
           </p>
           <div className="space-y-3">
             <a
-              href={`https://wa.me/584241234567?text=${generateWhatsAppMessage()}`}
+              href={`https://wa.me/51987654321?text=${generateWhatsAppMessage()}`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold transition-colors block"

@@ -242,7 +242,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onBack, onLogin }) => {
                       className={`appearance-none relative block w-full px-3 py-2 border ${
                         errors.phone ? 'border-red-300' : 'border-gray-300'
                       } placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-green-500 focus:border-green-500`}
-                      placeholder="+58 424-123-4567"
+                      placeholder="+51 987-654-321"
                     />
                   </div>
                   {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
