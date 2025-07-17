@@ -47,9 +47,9 @@ function App() {
   const allProducts: Product[] = [
     { 
       id: 1, 
-      name: 'Arrocera Eléctrica Premium', 
-      price: 'S/ 120.00', 
-      image: 'https://images.pexels.com/photos/7195786/pexels-photo-7195786.jpeg?auto=compress&cs=tinysrgb&w=400', 
+      name: 'Arrocera Eléctrica 700W', 
+      price: 'S/ 109.00', 
+      image: 'https://rimage.ripley.com.pe/home.ripley/Attachment/MKP/702/PMP00003044128/full_image-1.webp', 
       rating: 4.5, 
       category: 'Electrodomésticos',
       description: 'Arrocera eléctrica de 1.8L con función de mantener caliente y cocción automática.'
@@ -57,32 +57,41 @@ function App() {
     { 
       id: 2, 
       name: 'Licuadora Premium 1200W', 
-      price: 'S/ 180.00', 
-      image: 'https://images.pexels.com/photos/4226805/pexels-photo-4226805.jpeg?auto=compress&cs=tinysrgb&w=400', 
+      price: 'S/ 160.00', 
+      image: 'https://home.ripley.com.pe/Attachment/WOP_5/2019312376558/2019312376558_2.jpg',  
       rating: 4.8, 
       category: 'Electrodomésticos',
       description: 'Licuadora de alta potencia con 5 velocidades y jarra de vidrio resistente.'
     },
     { 
       id: 3, 
-      name: 'Tostadora Digital 4 Rebanadas', 
-      price: 'S/ 95.00', 
-      image: 'https://images.pexels.com/photos/4226806/pexels-photo-4226806.jpeg?auto=compress&cs=tinysrgb&w=400', 
+      name: 'Tostadora 4 Rebanadas 1600W', 
+      price: 'S/ 98.00', 
+      image: 'https://rimage.ripley.com.pe/home.ripley/Attachment/WOP/1/2019338973328/full_image-2019338973328.jpg', 
       rating: 4.3, 
       category: 'Electrodomésticos',
-      description: 'Tostadora con pantalla digital, 7 niveles de tostado y función descongelar.'
+      description: 'Tostadora de 4 rebanadas con 7 niveles de tostado y bandeja recogemigas extraíble.'
     },
     { 
       id: 4, 
-      name: 'Batidora de Mano 300W', 
-      price: 'S/ 75.00', 
-      image: 'https://images.pexels.com/photos/4226807/pexels-photo-4226807.jpeg?auto=compress&cs=tinysrgb&w=400', 
+      name: 'Batidora de Mano 250W', 
+      price: 'S/ 90.00', 
+      image: 'https://osterpe.vtexassets.com/arquivos/ids/156585-1600-auto?v=637492689214070000&width=1600&height=auto&aspect=true', 
       rating: 4.6, 
       category: 'Electrodomésticos',
-      description: 'Batidora de mano con 5 velocidades y accesorios incluidos.'
+      description: 'Batidora de mano con 6 velocidades y accesorios incluidos.'
     },
     { 
       id: 5, 
+      name: 'Plancha de Vapor 1200W', 
+      price: 'S/ 59.00', 
+      image: 'http://home.ripley.com.pe/Attachment/WOP_5/2019321652148/2019321652148_2.jpg', 
+      rating: 4.4, 
+      category: 'Electrodomésticos',
+      description: 'Plancha de vapor con suela antiadherente, 2 niveles de vapor y función autolimpieza.'
+    },
+    { 
+      id: 6, 
       name: 'Cargador USB-C Rápido 65W', 
       price: 'S/ 45.00', 
       image: 'https://images.pexels.com/photos/163097/twitter-facebook-together-exchange-163097.jpeg?auto=compress&cs=tinysrgb&w=400', 
@@ -91,16 +100,16 @@ function App() {
       description: 'Cargador de carga rápida compatible con laptops y dispositivos móviles.'
     },
     { 
-      id: 6, 
-      name: 'Audífonos Bluetooth Premium', 
-      price: 'S/ 220.00', 
-      image: 'https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=400', 
+      id: 7, 
+      name: 'Audífonos Bluetooth Inalámbricos', 
+      price: 'S/ 99.00', 
+      image: 'https://oechsle.vteximg.com.br/arquivos/ids/19773389-1000-1000/imageUrl_2.jpg?v=638673301908100000', 
       rating: 4.7, 
       category: 'Tecnología',
       description: 'Audífonos inalámbricos con cancelación de ruido y 30 horas de batería.'
     },
     { 
-      id: 7, 
+      id: 8, 
       name: 'Adaptador HDMI 4K', 
       price: 'S/ 35.00', 
       image: 'https://images.pexels.com/photos/159304/network-cable-ethernet-computer-159304.jpeg?auto=compress&cs=tinysrgb&w=400', 
@@ -109,7 +118,7 @@ function App() {
       description: 'Adaptador HDMI compatible con resolución 4K y audio de alta definición.'
     },
     { 
-      id: 8, 
+      id: 9, 
       name: 'Cable Lightning Certificado', 
       price: 'S/ 50.00', 
       image: 'https://images.pexels.com/photos/163143/instagram-cell-phone-tablet-device-163143.jpeg?auto=compress&cs=tinysrgb&w=400', 
@@ -470,7 +479,10 @@ function App() {
           {allProducts.length > 8 && (
             <div className="text-center">
               <button
-                onClick={() => setCurrentPage('products')}
+                onClick={() => {
+                  setCurrentPage('products');
+                  window.scrollTo(0,0);
+                }}
                 className="bg-green-700 hover:bg-green-800 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
               >
                 Ver Todos los Productos ({allProducts.length})

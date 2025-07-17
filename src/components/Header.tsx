@@ -53,7 +53,8 @@ const Header: React.FC<HeaderProps> = ({
 
   const handleProductsClick = () => {
     if (currentPage === 'home') {
-      onNavigate?.('products');
+      onNavigate?.('products'),
+      window.scrollTo(0,0);
     }
     setIsMenuOpen(false);
   };
@@ -73,7 +74,7 @@ const Header: React.FC<HeaderProps> = ({
                 }
               }}
             >
-              <Package className="h-8 w-8 text-green-700" />
+              <img src="/src/images/logo_polo.png" alt="Inversiones Polo Logo" className='h-12 w-12' />
               <span className="ml-2 text-xl font-bold text-green-800">Inversiones Polo</span>
             </div>
           </div>
