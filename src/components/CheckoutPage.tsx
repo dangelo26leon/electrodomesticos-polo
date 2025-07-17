@@ -550,8 +550,9 @@ ${itemsList}
                       </>
                     )}
                   </div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Notas adicionales (opcional)
+                  
+                  <div className="mt-4">
+                    <div>
                       </label>
                       <textarea
                         value={customerData.notes}
@@ -562,7 +563,8 @@ ${itemsList}
                       />
                     </div>
                   </div>
-                  
+                </div>
+                
                   <div className="mt-6 flex justify-between">
                     <button
                       onClick={() => setCurrentStep(2)}
