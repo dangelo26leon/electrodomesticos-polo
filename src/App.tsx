@@ -126,6 +126,123 @@ function App() {
       category: 'Tecnología',
       description: 'Cable Lightning certificado MFi de 2 metros con carga rápida.'
     },
+    { 
+      id: 10, 
+      name: 'Freidora de aire 2.5L', 
+      price: 'S/ 179.00', 
+      image: 'https://www.record.com.pe/wp-content/uploads/2021/05/2_2106500002_2.jpg', 
+      rating: 4.5, 
+      category: 'Electrodomésticos',
+      description: 'Freidora de aire record inoxidable collection 2.5L.'
+    },
+    { 
+      id: 11, 
+      name: 'Cafetera 12 TZS', 
+      price: 'S/ 199.00', 
+      image: 'https://electroabad.pe/wp-content/uploads/2020/07/BVSTDCDR5B_0-2.jpg', 
+      rating: 4.2, 
+      category: 'Electrodomésticos',
+      description: 'Cafetera 12 tzs con pantalla táctil programable Oster'
+    },
+    { 
+      id: 12, 
+      name: 'Exprimidor de cítricos 1.2L', 
+      price: 'S/ 79.90', 
+      image: 'https://rimage.ripley.com.pe/home.ripley/Attachment/MKP/2095/PMP20000309369/imagen2-1.jpeg', 
+      rating: 4.0, 
+      category: 'Electrodomésticos',
+      description: 'Capacidad de 1.2 L. - Base antideslizante - Cono exprimidor doble.'
+    },
+    { 
+      id: 13, 
+      name: 'Hervidor eléctrico 1.7L', 
+      price: 'S/ 75.90', 
+      image: 'https://home.ripley.com.pe/Attachment/WOP_5/2019281130182/2019281130182-2.jpg', 
+      rating: 4.5, 
+      category: 'Electrodomésticos',
+      description: 'Hervidor Oster eléctrico negro BVSTKT3101 1.7L'
+    },
+    { 
+      id: 14, 
+      name: 'Waflera Taurus 1000W', 
+      price: 'S/ 79.00', 
+      image: 'https://media.falabella.com/falabellaPE/20556491_3/w=800,h=800,fit=pad', 
+      rating: 4.0, 
+      category: 'Electrodomésticos',
+      description: 'La nueva Waflera Sweet Cooking de Taurus será tu mejor aliada para obtener unos Waffles perfectos'
+    },
+    { 
+      id: 15, 
+      name: 'Sandwichera loven 2 panes', 
+      price: 'S/ 89.00', 
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH3GhlL5nXXOQlrzHlfKD2jp1zjOApNujnpA&s', 
+      rating: 4.1, 
+      category: 'Electrodomésticos',
+      description: 'Prepara exquisitos Sándwiches, Omelettes o Paninis con esta increíble Sandwichera 3-en 1'
+    },
+    { 
+      id: 16, 
+      name: 'Extractora Oster 400W', 
+      price: 'S/ 209.00', 
+      image: 'https://osterpe.vtexassets.com/arquivos/ids/156074-800-auto?v=637279182621530000&width=800&height=auto&aspect=true', 
+      rating: 4.0, 
+      category: 'Electrodomésticos',
+      description: 'Motor potente y duradero para preparar todo tipo de jugos, incluso de las frutas y vegetales más duros.'
+    },
+    { 
+      id: 17, 
+      name: 'FOCO TP-LINK Tapo Multicolor', 
+      price: 'S/ 35.90', 
+      image: 'https://media.falabella.com/falabellaPE/117158616_01/w=800,h=800,fit=pad', 
+      rating: 4.2, 
+      category: 'Tecnología',
+      description: 'La Tp-Link Tapo L530E es una bombilla de luz Wi-Fi inteligente multicolor.'
+    },
+    { 
+      id: 18, 
+      name: 'Cinta Luz RGB 5M', 
+      price: 'S/ 30.00', 
+      image: 'https://media.falabella.com/falabellaPE/122559405_01/w=1500,h=1500,fit=pad', 
+      rating: 4.5, 
+      category: 'Tecnología',
+      description: 'Cinta luz RGB 5 metros + control.'
+    },
+    { 
+      id: 19, 
+      name: 'Estabilizador Forza 900VA', 
+      price: 'S/ 45.00', 
+      image: 'https://dasmitec.pe/wp-content/uploads/2024/12/FVR-2202.1.jpg', 
+      rating: 4.2, 
+      category: 'Tecnología',
+      description: 'Estabilizador Forza 8 TOMAS/900VA FVR-902.'
+    },
+    { 
+      id: 20, 
+      name: 'Parlantes Bluetooth 60W', 
+      price: 'S/ 55.00', 
+      image: 'https://rimage.ripley.com.pe/home.ripley/Attachment/MKP/4348/PMP20000829411/full_image-1.png', 
+      rating: 4.3, 
+      category: 'Tecnología',
+      description: 'Parlantes bluetooth elite J1 60W, Certificación IPX6 16 horas.'
+    },
+    { 
+      id: 21, 
+      name: 'Auriculares Inalámbricos', 
+      price: 'S/ 49.00', 
+      image: 'https://media.falabella.com/falabellaPE/141369551_01/w=800,h=800,fit=pad', 
+      rating: 4.5,
+      category: 'Tecnología',
+      description: 'Audífonos xiaomi In ear negro redmi buds 6 lite Bluetooth'
+    },
+    { 
+      id: 22, 
+      name: 'Teclado Inalámbrico + Mouse', 
+      price: 'S/ 129.00', 
+      image: 'https://dasmitec.pe/wp-content/uploads/2022/05/TE-4062N-1.jpg', 
+      rating: 4.3,
+      category: 'Tecnología',
+      description: 'Kit teclado inalámbrico y mouse negro.'
+    },
   ];
 
   const categories = Array.from(new Set(allProducts.map(product => product.category)));
