@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, User, MapPin, Phone, Mail, CreditCard, Package, CheckCircle } from 'lucide-react';
+import { ArrowLeft, User, MapPin, Phone, Mail, CreditCard, Package, CheckCircle, Store } from 'lucide-react';
 
 interface UserData {
   id: string;
@@ -34,6 +34,7 @@ interface CustomerData {
   lastName: string;
   email: string;
   phone: string;
+  deliveryMethod: 'delivery' | 'pickup';
   address: string;
   city: string;
   state: string;
@@ -49,6 +50,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ cartItems, onBack, onOrderC
     lastName: user?.lastName || '',
     email: user?.email || '',
     phone: user?.phone || '',
+    deliveryMethod: 'delivery',
     address: '',
     city: '',
     state: '',
@@ -94,6 +96,9 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ cartItems, onBack, onOrderC
   };
 
   const validateStep2 = () => {
+    if (customerData.deliveryMethod === 'pickup') {
+      return true; // No need address validation for pickup
+    }
     return customerData.address && customerData.city && customerData.state;
   };
 
@@ -128,6 +133,10 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ cartItems, onBack, onOrderC
       `• ${item.name} x${item.quantity} - ${item.price}`
     ).join('\n');
     
+    const deliveryInfo = customerData.deliveryMethod === 'pickup' 
+      ? '🏪 *RECOJO EN TIENDA*\nAv. Principal, Centro Comercial Plaza, Local 25'
+      : `📍 *Dirección de Entrega:*\n${customerData.address}\n${customerData.city}, ${customerData.state} ${customerData.zipCode}`;
+    
     const message = `🛒 *NUEVO PEDIDO - INVERSIONES POLO*
 
 👤 *Datos del Cliente:*
@@ -135,9 +144,7 @@ Nombre: ${customerData.firstName} ${customerData.lastName}
 Email: ${customerData.email}
 Teléfono: ${customerData.phone}
 
-📍 *Dirección de Entrega:*
-${customerData.address}
-${customerData.city}, ${customerData.state} ${customerData.zipCode}
+${deliveryInfo}
 
 🛍️ *Productos:*
 ${itemsList}
@@ -300,10 +307,80 @@ ${itemsList}
                 <div>
                   <div className="flex items-center mb-6">
                     <MapPin className="w-6 h-6 text-green-600 mr-3" />
-                    <h2 className="text-xl font-semibold text-gray-900">Dirección de Entrega</h2>
+                    <h2 className="text-xl font-semibold text-gray-900">Método de Entrega</h2>
                   </div>
                   
                   <div className="space-y-4">
+                    {/* Delivery Method Selection */}
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-3">
+                        ¿Cómo prefieres recibir tu pedido? *
+                      </label>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                          <input
+                            type="radio"
+                            name="deliveryMethod"
+                            value="delivery"
+                            checked={customerData.deliveryMethod === 'delivery'}
+                            onChange={(e) => handleInputChange('deliveryMethod', e.target.value)}
+                            className="mt-1 mr-3"
+                          />
+                          <div>
+                            <div className="font-medium text-gray-900 flex items-center">
+                              <MapPin className="w-4 h-4 mr-2 text-green-600" />
+                              Entrega a Domicilio
+                            </div>
+                            <div className="text-sm text-gray-600 mt-1">
+                              Entregamos en tu dirección - Gratis
+                            </div>
+                          </div>
+                        </label>
+                        
+                        <label className="flex items-start p-4 border-2 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                          <input
+                            type="radio"
+                            name="deliveryMethod"
+                            value="pickup"
+                            checked={customerData.deliveryMethod === 'pickup'}
+                            onChange={(e) => handleInputChange('deliveryMethod', e.target.value)}
+                            className="mt-1 mr-3"
+                          />
+                          <div>
+                            <div className="font-medium text-gray-900 flex items-center">
+                              <Package className="w-4 h-4 mr-2 text-green-600" />
+                              Recojo en Tienda
+                            </div>
+                            <div className="text-sm text-gray-600 mt-1">
+                              Retira en nuestra tienda física
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+
+                    {/* Store Information for Pickup */}
+                    {customerData.deliveryMethod === 'pickup' && (
+                      <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                        <h4 className="font-semibold text-green-800 mb-2 flex items-center">
+                          <MapPin className="w-4 h-4 mr-2" />
+                          Información de la Tienda
+                        </h4>
+                        <div className="text-sm text-green-700 space-y-1">
+                          <p><strong>Dirección:</strong> Av. Principal, Centro Comercial Plaza, Local 25</p>
+                          <p><strong>Horarios:</strong></p>
+                          <ul className="ml-4 space-y-1">
+                            <li>• Lunes - Viernes: 8:00 AM - 6:00 PM</li>
+                            <li>• Sábados: 9:00 AM - 5:00 PM</li>
+                            <li>• Domingos: 10:00 AM - 2:00 PM</li>
+                          </ul>
+                          <p><strong>Teléfono:</strong> +51 987-654-321</p>
+                          <p className="mt-2 font-medium">
+                            💡 Te contactaremos cuando tu pedido esté listo para recoger
+                          </p>
+                        </div>
+                      </div>
+                    )}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Dirección Completa *
@@ -414,7 +491,65 @@ ${itemsList}
                       </div>
                     </div>
                     
-                    <div>
+                    {/* Address fields - only show for delivery */}
+                    {customerData.deliveryMethod === 'delivery' && (
+                      <>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Dirección Completa *
+                          </label>
+                          <input
+                            type="text"
+                            value={customerData.address}
+                            onChange={(e) => handleInputChange('address', e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                            placeholder="Av. Principal, Edificio, Apartamento, etc."
+                          />
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Ciudad *
+                            </label>
+                            <input
+                              type="text"
+                              value={customerData.city}
+                              onChange={(e) => handleInputChange('city', e.target.value)}
+                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                              placeholder="Tu ciudad"
+                            />
+                          </div>
+                          
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Estado *
+                            </label>
+                            <input
+                              type="text"
+                              value={customerData.state}
+                              onChange={(e) => handleInputChange('state', e.target.value)}
+                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                              placeholder="Tu estado"
+                            />
+                          </div>
+                          
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Código Postal
+                            </label>
+                            <input
+                              type="text"
+                              value={customerData.zipCode}
+                              onChange={(e) => handleInputChange('zipCode', e.target.value)}
+                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                              placeholder="1234"
+                            />
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Notas adicionales (opcional)
                       </label>
@@ -478,7 +613,9 @@ ${itemsList}
                   <span className="font-semibold">{formatPrice(getTotalPrice())}</span>
                 </div>
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-gray-600">Envío:</span>
+                  <span className="text-gray-600">
+                    {customerData?.deliveryMethod === 'pickup' ? 'Recojo en tienda:' : 'Envío:'}
+                  </span>
                   <span className="font-semibold text-green-600">Gratis</span>
                 </div>
                 <div className="border-t pt-2">
