@@ -88,7 +88,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ user, onUpdateUser, onLogout,
   };
 
   const formatPrice = (price: number) => {
-    return `Bs. ${price.toLocaleString()}`;
+    return `S/ ${price.toFixed(2)}`;
   };
 
   return (

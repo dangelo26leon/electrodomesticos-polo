@@ -48,7 +48,7 @@ function App() {
     { 
       id: 1, 
       name: 'Arrocera Eléctrica Premium', 
-      price: 'Bs. 45.000', 
+      price: 'S/ 120.00', 
       image: 'https://images.pexels.com/photos/7195786/pexels-photo-7195786.jpeg?auto=compress&cs=tinysrgb&w=400', 
       rating: 4.5, 
       category: 'Electrodomésticos',
@@ -57,7 +57,7 @@ function App() {
     { 
       id: 2, 
       name: 'Licuadora Premium 1200W', 
-      price: 'Bs. 65.000', 
+      price: 'S/ 180.00', 
       image: 'https://images.pexels.com/photos/4226805/pexels-photo-4226805.jpeg?auto=compress&cs=tinysrgb&w=400', 
       rating: 4.8, 
       category: 'Electrodomésticos',
@@ -66,7 +66,7 @@ function App() {
     { 
       id: 3, 
       name: 'Tostadora Digital 4 Rebanadas', 
-      price: 'Bs. 35.000', 
+      price: 'S/ 95.00', 
       image: 'https://images.pexels.com/photos/4226806/pexels-photo-4226806.jpeg?auto=compress&cs=tinysrgb&w=400', 
       rating: 4.3, 
       category: 'Electrodomésticos',
@@ -75,7 +75,7 @@ function App() {
     { 
       id: 4, 
       name: 'Batidora de Mano 300W', 
-      price: 'Bs. 28.000', 
+      price: 'S/ 75.00', 
       image: 'https://images.pexels.com/photos/4226807/pexels-photo-4226807.jpeg?auto=compress&cs=tinysrgb&w=400', 
       rating: 4.6, 
       category: 'Electrodomésticos',
@@ -84,7 +84,7 @@ function App() {
     { 
       id: 5, 
       name: 'Cargador USB-C Rápido 65W', 
-      price: 'Bs. 15.000', 
+      price: 'S/ 45.00', 
       image: 'https://images.pexels.com/photos/163097/twitter-facebook-together-exchange-163097.jpeg?auto=compress&cs=tinysrgb&w=400', 
       rating: 4.4, 
       category: 'Tecnología',
@@ -93,7 +93,7 @@ function App() {
     { 
       id: 6, 
       name: 'Audífonos Bluetooth Premium', 
-      price: 'Bs. 85.000', 
+      price: 'S/ 220.00', 
       image: 'https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=400', 
       rating: 4.7, 
       category: 'Tecnología',
@@ -102,7 +102,7 @@ function App() {
     { 
       id: 7, 
       name: 'Adaptador HDMI 4K', 
-      price: 'Bs. 12.000', 
+      price: 'S/ 35.00', 
       image: 'https://images.pexels.com/photos/159304/network-cable-ethernet-computer-159304.jpeg?auto=compress&cs=tinysrgb&w=400', 
       rating: 4.2, 
       category: 'Tecnología',
@@ -111,7 +111,7 @@ function App() {
     { 
       id: 8, 
       name: 'Cable Lightning Certificado', 
-      price: 'Bs. 18.000', 
+      price: 'S/ 50.00', 
       image: 'https://images.pexels.com/photos/163143/instagram-cell-phone-tablet-device-163143.jpeg?auto=compress&cs=tinysrgb&w=400', 
       rating: 4.5, 
       category: 'Tecnología',
@@ -555,7 +555,7 @@ function App() {
                 </div>
                 <div className="flex items-center">
                   <Mail className="w-5 h-5 text-green-400 mr-3" />
-                  <span>info@inversionespolo.com</span>
+                  <span>info@inversionespolo.pe</span>
                 </div>
                 <div className="flex items-center">
                   <MapPin className="w-5 h-5 text-green-400 mr-3" />

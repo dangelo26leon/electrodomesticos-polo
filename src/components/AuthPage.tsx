@@ -349,7 +349,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onBack, onLogin }) => {
                   // Demo credentials
                   setFormData({
                     ...formData,
-                    email: 'demo@inversionespolo.com',
+                    email: 'demo@inversionespolo.pe',
                     password: 'demo123'
                   });
                 }}

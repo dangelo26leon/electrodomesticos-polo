@@ -44,11 +44,11 @@ const ProductsPage: React.FC<ProductsPageProps> = ({
     .sort((a, b) => {
       switch (sortBy) {
         case 'price-low':
-          return parseFloat(a.price.replace('Bs. ', '').replace('.', '')) - 
-                 parseFloat(b.price.replace('Bs. ', '').replace('.', ''));
+          return parseFloat(a.price.replace('S/ ', '')) - 
+                 parseFloat(b.price.replace('S/ ', ''));
         case 'price-high':
-          return parseFloat(b.price.replace('Bs. ', '').replace('.', '')) - 
-                 parseFloat(a.price.replace('Bs. ', '').replace('.', ''));
+          return parseFloat(b.price.replace('S/ ', '')) - 
+                 parseFloat(a.price.replace('S/ ', ''));
         case 'rating':
           return b.rating - a.rating;
         case 'name':

@@ -41,13 +41,13 @@ const Cart: React.FC<CartProps> = ({
 }) => {
   const getTotalPrice = () => {
     return items.reduce((total, item) => {
-      const price = parseFloat(item.price.replace('Bs. ', '').replace('.', ''));
+      const price = parseFloat(item.price.replace('S/ ', ''));
       return total + (price * item.quantity);
     }, 0);
   };
 
   const formatPrice = (price: number) => {
-    return `Bs. ${price.toLocaleString()}`;
+    return `S/ ${price.toFixed(2)}`;
   };
 
   if (!isOpen) return null;

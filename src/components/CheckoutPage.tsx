@@ -76,13 +76,13 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ cartItems, onBack, onOrderC
 
   const getTotalPrice = () => {
     return cartItems.reduce((total, item) => {
-      const price = parseFloat(item.price.replace('Bs. ', '').replace('.', ''));
+      const price = parseFloat(item.price.replace('S/ ', ''));
       return total + (price * item.quantity);
     }, 0);
   };
 
   const formatPrice = (price: number) => {
-    return `Bs. ${price.toLocaleString()}`;
+    return `S/ ${price.toFixed(2)}`;
   };
 
   const handleInputChange = (field: keyof CustomerData, value: string) => {
