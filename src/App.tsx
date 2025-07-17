@@ -3,6 +3,7 @@ import Header from './components/Header';
 import ProductCard from './components/ProductCard';
 import ProductsPage from './components/ProductsPage';
 import Cart from './components/Cart';
+import CheckoutPage from './components/CheckoutPage';
 import SearchFilter from './components/SearchFilter';
 import { Package, Phone, MapPin, Mail, Star, Heart } from 'lucide-react';
 
@@ -21,7 +22,7 @@ interface CartItem extends Product {
 }
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'products'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'products' | 'checkout'>('home');
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [favorites, setFavorites] = useState<number[]>([]);
@@ -168,6 +169,16 @@ function App() {
     setCartItems([]);
   };
 
+  const handleProceedToCheckout = () => {
+    setCurrentPage('checkout');
+    setIsCartOpen(false);
+  };
+
+  const handleOrderComplete = () => {
+    clearCart();
+    setCurrentPage('home');
+  };
+
   const toggleFavorite = (productId: number) => {
     setFavorites(prevFavorites =>
       prevFavorites.includes(productId)
@@ -194,6 +205,36 @@ function App() {
     }
   };
 
+  // If we're on the checkout page, render the CheckoutPage component
+  if (currentPage === 'checkout') {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Header 
+          cartItems={getTotalCartItems()} 
+          onCartClick={() => setIsCartOpen(true)} 
+          currentPage={currentPage}
+          onNavigate={setCurrentPage}
+        />
+
+        <Cart
+          isOpen={isCartOpen}
+          onClose={() => setIsCartOpen(false)}
+          items={cartItems}
+          onUpdateQuantity={updateCartQuantity}
+          onRemoveItem={removeFromCart}
+          onClearCart={clearCart}
+          onProceedToCheckout={handleProceedToCheckout}
+        />
+
+        <CheckoutPage
+          cartItems={cartItems}
+          onBack={() => setCurrentPage('home')}
+          onOrderComplete={handleOrderComplete}
+        />
+      </div>
+    );
+  }
+
   // If we're on the products page, render the ProductsPage component
   if (currentPage === 'products') {
     return (
@@ -212,6 +253,7 @@ function App() {
           onUpdateQuantity={updateCartQuantity}
           onRemoveItem={removeFromCart}
           onClearCart={clearCart}
+          onProceedToCheckout={handleProceedToCheckout}
         />
 
         <ProductsPage
@@ -242,6 +284,7 @@ function App() {
         onUpdateQuantity={updateCartQuantity}
         onRemoveItem={removeFromCart}
         onClearCart={clearCart}
+        onProceedToCheckout={handleProceedToCheckout}
       />
 
       {/* Hero Section */}

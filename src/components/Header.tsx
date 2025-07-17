@@ -4,8 +4,8 @@ import { Menu, X, ShoppingCart, Phone, MapPin, Mail, Home, Package, Search } fro
 interface HeaderProps {
   cartItems: number;
   onCartClick: () => void;
-  currentPage?: 'home' | 'products';
-  onNavigate?: (page: 'home' | 'products') => void;
+  currentPage?: 'home' | 'products' | 'checkout';
+  onNavigate?: (page: 'home' | 'products' | 'checkout') => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ 

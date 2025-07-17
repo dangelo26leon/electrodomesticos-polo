@@ -17,6 +17,7 @@ interface CartProps {
   onUpdateQuantity: (id: number, quantity: number) => void;
   onRemoveItem: (id: number) => void;
   onClearCart: () => void;
+  onProceedToCheckout: () => void;
 }
 
 const Cart: React.FC<CartProps> = ({ 
@@ -25,7 +26,8 @@ const Cart: React.FC<CartProps> = ({
   items, 
   onUpdateQuantity, 
   onRemoveItem, 
-  onClearCart 
+  onClearCart,
+  onProceedToCheckout
 }) => {
   const getTotalPrice = () => {
     return items.reduce((total, item) => {
@@ -128,7 +130,10 @@ const Cart: React.FC<CartProps> = ({
               </div>
               
               <div className="space-y-2">
-                <button className="w-full bg-green-700 hover:bg-green-800 text-white py-3 rounded-lg font-semibold transition-colors">
+                <button 
+                  onClick={onProceedToCheckout}
+                  className="w-full bg-green-700 hover:bg-green-800 text-white py-3 rounded-lg font-semibold transition-colors"
+                >
                   Proceder al Pago
                 </button>
                 <button 
