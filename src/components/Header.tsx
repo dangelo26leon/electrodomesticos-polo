@@ -74,7 +74,7 @@ const Header: React.FC<HeaderProps> = ({
                 }
               }}
             >
-              <img src="/src/images/logo_polo.png" alt="Inversiones Polo Logo" className='h-12 w-12' />
+              <img src="/images/logo_polo.png" alt="Inversiones Polo Logo" className='h-12 w-12' />
               <span className="ml-2 text-xl font-bold text-green-800">Inversiones Polo</span>
             </div>
           </div>
