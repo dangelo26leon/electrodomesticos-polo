@@ -94,7 +94,7 @@ function App() {
       id: 6, 
       name: 'Cargador USB-C Rápido 65W', 
       price: 'S/ 45.00', 
-      image: 'https://images.pexels.com/photos/163097/twitter-facebook-together-exchange-163097.jpeg?auto=compress&cs=tinysrgb&w=400', 
+      image: 'https://promart.vteximg.com.br/arquivos/ids/8510663-1000-1000/imageUrl_1.jpg?v=638705341603330000', 
       rating: 4.4, 
       category: 'Tecnología',
       description: 'Cargador de carga rápida compatible con laptops y dispositivos móviles.'
@@ -112,7 +112,7 @@ function App() {
       id: 8, 
       name: 'Adaptador HDMI 4K', 
       price: 'S/ 35.00', 
-      image: 'https://images.pexels.com/photos/159304/network-cable-ethernet-computer-159304.jpeg?auto=compress&cs=tinysrgb&w=400', 
+      image: 'https://promart.vteximg.com.br/arquivos/ids/2128560-1000-1000/10093308.jpg?v=637680073113370000', 
       rating: 4.2, 
       category: 'Tecnología',
       description: 'Adaptador HDMI compatible con resolución 4K y audio de alta definición.'
@@ -121,7 +121,7 @@ function App() {
       id: 9, 
       name: 'Cable Lightning Certificado', 
       price: 'S/ 50.00', 
-      image: 'https://images.pexels.com/photos/163143/instagram-cell-phone-tablet-device-163143.jpeg?auto=compress&cs=tinysrgb&w=400', 
+      image: 'https://todatecnologia.pe/wp-content/uploads/2024/06/Cable-UGREEN-USB-C-a-Lightning-Cable-MFI-Certificado-PD-Carga-Rapida-Compatible-con-iPhone-iPad-Pro-3-600x600.png', 
       rating: 4.5, 
       category: 'Tecnología',
       description: 'Cable Lightning certificado MFi de 2 metros con carga rápida.'
@@ -175,7 +175,7 @@ function App() {
       id: 15, 
       name: 'Sandwichera loven 2 panes', 
       price: 'S/ 89.00', 
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH3GhlL5nXXOQlrzHlfKD2jp1zjOApNujnpA&s', 
+      image: 'https://rimage.ripley.com.pe/home.ripley/Attachment/MKP/3932/PMP20000715072/full_image-1.png', 
       rating: 4.1, 
       category: 'Electrodomésticos',
       description: 'Prepara exquisitos Sándwiches, Omelettes o Paninis con esta increíble Sandwichera 3-en 1'
@@ -230,19 +230,47 @@ function App() {
       name: 'Auriculares Inalámbricos', 
       price: 'S/ 49.00', 
       image: 'https://media.falabella.com/falabellaPE/141369551_01/w=800,h=800,fit=pad', 
-      rating: 4.5,
+      rating: 4.9,
       category: 'Tecnología',
       description: 'Audífonos xiaomi In ear negro redmi buds 6 lite Bluetooth'
     },
     { 
       id: 22, 
       name: 'Teclado Inalámbrico + Mouse', 
-      price: 'S/ 129.00', 
-      image: 'https://dasmitec.pe/wp-content/uploads/2022/05/TE-4062N-1.jpg', 
-      rating: 4.3,
+      price: 'S/ 100.00', 
+      image: 'https://www.lacuracao.pe/media/catalog/product/t/e/tecladomousewirn_1.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700', 
+      rating: 4.6,
       category: 'Tecnología',
       description: 'Kit teclado inalámbrico y mouse negro.'
     },
+    { 
+      id: 23, 
+      name: 'Arrocera Imaco 0.6L', 
+      price: 'S/ 59.00', 
+      image: 'https://carsaperupoc.vtexassets.com/arquivos/ids/161677-1200-auto?v=638657751265170000&width=1200&height=auto&aspect=true', 
+      rating: 4.5,
+      category: 'Electrodomésticos',
+      description: 'Prepara arroz de manera rápida y eficiente con la olla arrocera Imaco RC006N de 0.6 litros en color negro.'
+    },
+    { 
+      id: 24, 
+      name: 'Calculadora Cientídica Casio Fx-95Es Plus', 
+      price: 'S/ 71.00', 
+      image: 'https://production-tailoy-repo-magento-statics.s3.amazonaws.com/imagenes/872x872/productos/i/c/a/calculadora-cientifica-casio-fx-95-7673-default-1.jpg', 
+      rating: 4.7,
+      category: 'Tecnología',
+      description: 'Funciones matemáticas básicas y Cantidad de funciones: 274'
+    },
+    { 
+      id: 25, 
+      name: 'Mando Inalámbrico Seisa', 
+      price: 'S/ 50.00', 
+      image: 'https://plazavea.vteximg.com.br/arquivos/ids/5334496-1000-1000/image-1f8a0817c76c4e78b453ec1d3a111e9f.jpg', 
+      rating: 4.8,
+      category: 'Tecnología',
+      description: 'Compatible para PC, PSII, PSIII, PC360(XBOX), ANDROID, SMART TV BOX. La transmisión inalámbrica se puede utilizar en 8 metros. '
+    },
+    
   ];
 
   const categories = Array.from(new Set(allProducts.map(product => product.category)));
@@ -684,11 +712,11 @@ function App() {
                 </div>
                 <div className="flex items-center">
                   <Mail className="w-5 h-5 text-green-400 mr-3" />
-                  <span>info@inversionespolo.pe</span>
+                  <span>poloinversiones@gmail.com</span>
                 </div>
                 <div className="flex items-center">
                   <MapPin className="w-5 h-5 text-green-400 mr-3" />
-                  <span>Av. Principal, Centro Comercial Plaza, Local 25</span>
+                  <span>Mercado Buenos Aires, Nuevo Chimbote</span>
                 </div>
               </div>
             </div>
@@ -706,7 +734,7 @@ function App() {
                 </div>
                 <div className="flex justify-between">
                   <span>Domingos:</span>
-                  <span>10:00 AM - 2:00 PM</span>
+                  <span>9:00 AM - 3:00 PM</span>
                 </div>
               </div>
             </div>
@@ -719,12 +747,12 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center mb-4 md:mb-0">
-              <Package className="h-6 w-6 text-green-400 mr-2" />
+              <img src="/src/images/logo_polo.png" alt="Inversiones Polo Logo" className='h-10 w-10' />
               <span className="text-lg font-semibold">Inversiones Polo</span>
             </div>
             <div className="text-center md:text-right">
               <p className="text-gray-400">
-                © 2024 Inversiones Polo. Todos los derechos reservados.
+                © 2025 Inversiones Polo. Todos los derechos reservados.
               </p>
             </div>
           </div>
