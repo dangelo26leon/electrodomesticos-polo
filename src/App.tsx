@@ -750,6 +750,15 @@ function App() {
               <img src="/images/logo_polo.png" alt="Inversiones Polo Logo" className='h-10 w-10' />
               <span className="text-lg font-semibold">Inversiones Polo</span>
             </div>
+            <div className="flex items-center mb-4 md:mb-0">
+              <ul className='list-disc pl-5 space-y-1 text-b'>
+                <li>León Valderrama Dangelo Alexander</li>
+                <li>Oyola Valverde Angel Sebastian</li>
+                <li>Torrejon Pereda Alejandro</li>
+                <li>Gomez Ramirez Andy</li>
+
+              </ul>
+            </div>
             <div className="text-center md:text-right">
               <p className="text-gray-400">
                 © 2025 Inversiones Polo. Todos los derechos reservados.
