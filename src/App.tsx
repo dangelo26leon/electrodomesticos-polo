@@ -8,6 +8,7 @@ import AuthPage from './components/AuthPage';
 import UserProfile from './components/UserProfile';
 import SearchFilter from './components/SearchFilter';
 import { Package, Phone, MapPin, Mail, Star, Heart } from 'lucide-react';
+import logoPolo from '/images/logo_polo.png';
 
 interface Product {
   id: number;
@@ -747,11 +748,11 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center mb-4 md:mb-0">
-              <img src="/images/logo_polo.png" alt="Inversiones Polo Logo" className='h-10 w-10' />
+              <img src={logoPolo} alt="Inversiones Polo Logo" className='h-10 w-10' />
               <span className="text-lg font-semibold">Inversiones Polo</span>
             </div>
             <div className="flex items-center mb-4 md:mb-0">
-              <ul className='list-disc pl-5 space-y-1 text-b'>
+              <ul className='list-disc pl-5 space-y-1 text-base'>
                 <li>León Valderrama Dangelo Alexander</li>
                 <li>Oyola Valverde Angel Sebastian</li>
                 <li>Torrejon Pereda Alejandro</li>

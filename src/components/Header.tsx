@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, ShoppingCart, Phone, MapPin, Mail, Home, Package, Search, User, LogOut } from 'lucide-react';
+import logoPolo from '/images/logo_polo.png';
 
 interface UserData {
   id: string;
@@ -74,7 +75,7 @@ const Header: React.FC<HeaderProps> = ({
                 }
               }}
             >
-              <img src="/images/logo_polo.png" alt="Inversiones Polo Logo" className='h-12 w-12' />
+              <img src={logoPolo} alt="Inversiones Polo Logo" className='h-12 w-12' />
               <span className="ml-2 text-xl font-bold text-green-800">Inversiones Polo</span>
             </div>
           </div>
